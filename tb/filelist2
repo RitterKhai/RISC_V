@@ -1,0 +1,14 @@
+../src/dmem.sv
+../src/imem.sv
+../src/branch_compare.sv
+../src/compare_1bit.sv
+../src/compare_32bit.sv
+../src/compare_32bit_s.sv
+../src/control_unit.sv
+../src/imm_gen.sv
+../src/mux_32bit.sv
+../src/mux_32bit_4x1.sv
+../src/reg_32.sv
+../src/PC.sv
+../src/alu.sv
+../src/single_cycle.sv
