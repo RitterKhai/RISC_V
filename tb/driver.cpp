@@ -1,4 +1,4 @@
-#define MAX_SIM 40000
+#define MAX_SIM 80000
 /*
 void set_random(Vtop *dut, vluint64_t sim_unit) {
         if (sim_unit == 1 ) {
@@ -316,6 +316,32 @@ void check_J (Vtop *dut) {
    else print_failed();
 }
 
+void check_POWER (Vtop *dut) {
+   strcpy(string, "CALCULATE POWER");
+   con_hex_01  = (dut->io_hex0_o == 0x000019A1) && (dut->io_hex1_o == 0x00000009);
+   con_hex_23  = (dut->io_hex2_o == 0x00000004) && (dut->io_hex3_o == 0x00000019);
+   con_hex_45  = 1;
+   con_hex_67  = 1;
+   con_gr      = 1;
+   con_lcd     = 1;
+   print_test(string);
+   if (con_hex_01 && con_hex_23 && con_hex_45 && con_hex_67 && con_gr && con_lcd) print_passed();
+   else print_failed();
+}
+
+void check_FAC (Vtop *dut) {
+   strcpy(string, "CALCULATE FACTORIAL");
+   con_hex_01  = (dut->io_hex0_o == 0x000019A1) && (dut->io_hex1_o == 0x00000009);
+   con_hex_23  = (dut->io_hex2_o == 0x00000004) && (dut->io_hex3_o == 0x02611500);
+   con_hex_45  = 1;
+   con_hex_67  = 1;
+   con_gr      = 1;
+   con_lcd     = 1;
+   print_test(string);
+   if (con_hex_01 && con_hex_23 && con_hex_45 && con_hex_67 && con_gr && con_lcd) print_passed();
+   else print_failed();
+}
+
 void set_random(Vtop *dut, vluint64_t sim_unit) { 
         //input
         if (sim_unit == 1 ) {
@@ -375,6 +401,17 @@ void set_random(Vtop *dut, vluint64_t sim_unit) {
                 check_J(dut);
                 dut -> rst_ni  = 1;
                 dut -> io_sw_i = 0;
+        }
+        if (sim_unit == 640) {
+                check_POWER(dut);
+                dut -> rst_ni  = 1;
+                dut -> io_sw_i = 0;
+        }
+        if (sim_unit == 1000) {
+                check_FAC(dut);
+                dut -> rst_ni  = 1;
+                dut -> io_sw_i = 0;
+                print_bye();
         }
 }
 
